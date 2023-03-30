@@ -1,0 +1,13 @@
+@font-face {
+    font-family: "font-1";
+    src: url(../assets/fonts/Poppins-Regular.ttf);
+  }
+  
+  $font-1: "font-1", sans-serif;
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: $font-1;
+}
