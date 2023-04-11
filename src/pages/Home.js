@@ -1,15 +1,20 @@
-import React from 'react';
-import Navbar from '../components/Navbar';
+import React from "react";
+import Navbar from "../components/Navbar";
+import backgroundImage from "../assets/img/home.jpg";
 
 const Home = () => {
-    return (
-        <>
-        <Navbar /> 
-        <div>
-            <h1>Accueil</h1>
-        </div>
-        </>
-    );
+  return (
+    <div className="home-container">
+      <Navbar />
+      <div className="hero">
+        <img
+          src={backgroundImage}
+          alt="background"
+          className="background-image"
+        />
+      </div>
+    </div>
+  );
 };
 
 export default Home;

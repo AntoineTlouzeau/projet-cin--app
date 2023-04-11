@@ -1,7 +1,15 @@
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { firebaseAuth } from "../utils/firebase-config";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
+  onAuthStateChanged(firebaseAuth, (currentUser) => {
+    if (!currentUser) navigate("/login");
+  });
+
   return (
     <div>
       <input type="checkbox" id="check" />
@@ -24,6 +32,12 @@ const Navbar = () => {
             <NavLink to="/users">
               <span className="fa fa-user"></span>
             </NavLink>
+          </li>
+          <li>
+            <button
+              className="fa fa-power-off"
+              onClick={() => signOut(firebaseAuth)}
+            ></button>
           </li>
         </ul>
         <label htmlFor="check" className="bar">

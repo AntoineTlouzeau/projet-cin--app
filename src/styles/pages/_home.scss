@@ -1,0 +1,16 @@
+.home-container {
+    background-color: black;
+
+    .hero {
+        position: relative;
+
+        .background-image {
+            filter: brightness(60%);
+        }
+
+        img {
+            height: 100vh;
+            width: 100vw;
+        }
+    }
+}
