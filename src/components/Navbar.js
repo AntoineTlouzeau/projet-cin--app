@@ -1,10 +1,23 @@
 import { onAuthStateChanged, signOut } from "firebase/auth";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { firebaseAuth } from "../utils/firebase-config";
+import axios from "axios";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const [moviesData, setMoviesData] = useState([]);
+  const [search, setSearch] = useState("a");
+
+  // useEffect(() => {
+  //   axios
+  //     .get(
+  //       `https://api.themoviedb.org/3/search/movie?api_key=c33414545f69279dbdd28af3020ce178&query=${search}&language=fr-FR`
+  //     )
+  //     .then((res) => setMoviesData(res.data.results));
+  //   }, [search]);
+    
+    // console.log(moviesData);
 
   onAuthStateChanged(firebaseAuth, (currentUser) => {
     if (!currentUser) navigate("/login");
@@ -18,7 +31,12 @@ const Navbar = () => {
           <NavLink to="/">LOGO</NavLink>
         </div>
         <div className="search-box">
-          <input type="search" placeholder="Entrer le titre d'un film" />
+          <input
+            type="search"
+            placeholder="Entrer le titre d'un film"
+            id="search-input"
+            onChange={(e) => setSearch(e.target.value)}
+          />
           <span className="fa fa-search"></span>
         </div>
         <ul>
@@ -45,6 +63,9 @@ const Navbar = () => {
           <span className="fa fa-times" id="times"></span>
         </label>
       </nav>
+
+      
+
     </div>
   );
 };
