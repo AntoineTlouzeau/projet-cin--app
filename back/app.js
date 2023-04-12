@@ -1,9 +1,11 @@
 const express = require("express");
+const sequelize = require('./src/db/sequelize')
 
 const app = express();
-const PORT = 3000;
+const PORT = 6000;
 
-app.get("/", (req, res) => res.send("Hello 2"));
+sequelize.initDb()
+
 
 app.listen(PORT, () =>
   console.log(`L'application a demarré sur le port ${PORT}`)
