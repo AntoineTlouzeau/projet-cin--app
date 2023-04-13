@@ -6,6 +6,7 @@ import Forum from './pages/Forum';
 import Users from './pages/Users';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import MovieInfo from './pages/MovieInfo';
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/movieinfo/:id" element={<MovieInfo />} />
         <Route path="/watchlist" element={<Watchlist />} />
         <Route path="/forum" element={<Forum />} />
         <Route path="/users" element={<Users />} />

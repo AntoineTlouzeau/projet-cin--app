@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import backgroundImage from "../assets/img/home.jpg";
 import axios from "axios";
-import CardSlider from "../components/CardSlider";
-import Slider from "../components/Slider";
+import CardSlider from "../components/Slider";
+import Slider from "../components/CardSlider";
 
 const Home = () => {
   
