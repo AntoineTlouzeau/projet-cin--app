@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { IoPlayCircleSharp } from "react-icons/io5";
-import { RiThumbUpFill, RiThumbDownFill } from "react-icons/ri";
 import { BsCheck } from "react-icons/bs";
 import { AiOutlinePlus } from "react-icons/ai";
 import { BiChevronDown } from "react-icons/bi";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Card({ movieData }) {
   const [isHovered, setIsHovered] = useState(false);
@@ -32,7 +31,7 @@ export default function Card({ movieData }) {
             <img
               src={`https://image.tmdb.org/t/p/w500${movieData.backdrop_path}`}
               alt="movie"
-              //   onClick={() => navigate("/player")}
+              onClick={handleMoreInfoClick}
             />
             {/* <video
               src={video}
@@ -45,7 +44,7 @@ export default function Card({ movieData }) {
           <div className="info-container">
             <h3
               className="name"
-              // onClick={() => navigate("/player")}
+              onClick={handleMoreInfoClick}
             >
               {movieData.title}
             </h3>
@@ -55,8 +54,7 @@ export default function Card({ movieData }) {
                   title="Lecture"
                   //   onClick={() => navigate("/player")}
                 />
-                <RiThumbUpFill title="J'aime" />
-                <RiThumbDownFill title="Pas pour moi" />
+               
                 {/* {isLiked ? ( */}
                 <BsCheck
                   title="Retirer de la liste"

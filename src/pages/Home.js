@@ -3,7 +3,6 @@ import Navbar from "../components/Navbar";
 import backgroundImage from "../assets/img/home.jpg";
 import axios from "axios";
 import CardSlider from "../components/Slider";
-import Slider from "../components/CardSlider";
 
 const Home = () => {
   
@@ -16,16 +15,7 @@ const Home = () => {
   //       .then((res) => setMoviesData(res.data.results));
   //   }, [search]);
 
-  // useEffect(() => {
-  //   axios
-  //     .get(
-  //       `https://api.themoviedb.org/3/search/movie?api_key=c33414545f69279dbdd28af3020ce178&query=a&with_genres=28&language=fr-FR`
-  //     )
-  //     .then((res) => 
-  //       setActionMovies(res.data.results))  
-     
-  // },[])
-  
+    
 
   return (
     <div className="home-container">

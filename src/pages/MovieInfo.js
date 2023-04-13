@@ -7,7 +7,7 @@ export default function MovieInfo() {
   const location = useLocation();
   const movieData = location.state ? location.state.movie : null;
 
-  console.log(movieData);
+  // console.log(movieData);
 
   return (
     <div className="movieInfo-container">
