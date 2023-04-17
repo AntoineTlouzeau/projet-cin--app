@@ -15,6 +15,7 @@ nav .logo {
     font-weight: 800;
     color: white;
     cursor: pointer;
+    padding-left: 10px;
 }
 
 nav .logo a {
@@ -216,10 +217,10 @@ input[type="checkbox"] {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        gap: 1rem;
+        gap: 2rem;
         margin: 3vw;
         overflow: visible;
-        padding-top: 10vw;
+        padding-top: 8vw;
         padding-bottom: 7vw;
     }
 }

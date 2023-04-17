@@ -1,22 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import backgroundImage from "../assets/img/home.jpg";
+import MovieLogo from "../assets/img/homeTitle.webp";
 import axios from "axios";
-import CardSlider from "../components/Slider";
+import Slider from "../components/Slider";
+import { FaPlay } from "react-icons/fa";
+import { AiOutlineInfoCircle } from "react-icons/ai";
 
 const Home = () => {
-  
-
-  // useEffect(() => {
-  //     axios
-  //       .get(
-  //         `https://api.themoviedb.org/3/search/movie?api_key=c33414545f69279dbdd28af3020ce178&query=${search}&language=fr-FR`
-  //       )
-  //       .then((res) => setMoviesData(res.data.results));
-  //   }, [search]);
-
-    
-
   return (
     <div className="home-container">
       <Navbar />
@@ -26,8 +17,23 @@ const Home = () => {
           alt="background"
           className="background-image"
         />
+        <div className="container">
+          <div className="logo">
+            <img src={MovieLogo} alt="Movie Logo" />
+          </div>
+          <div className="buttons">
+            <button>
+              <FaPlay /> Lecture
+            </button>
+            <button>
+              <AiOutlineInfoCircle /> Plus d'infos
+            </button>
+          </div>
+        </div>
       </div>
-      <CardSlider/>
+      <div className="home-slider">
+        <Slider />
+      </div>
     </div>
   );
 };

@@ -1,24 +1,33 @@
 import React, { useState } from "react";
 import { IoPlayCircleSharp } from "react-icons/io5";
 import { BsCheck } from "react-icons/bs";
-import { AiOutlinePlus } from "react-icons/ai";
-import { BiChevronDown } from "react-icons/bi";
+import { AiOutlineInfoCircle, AiOutlinePlus } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function Card({ movieData }) {
   const [isHovered, setIsHovered] = useState(false);
+  // const genres = useSelector((state) => state.netflix.genres)
 
-    const navigate = useNavigate();
+  // console.log(genres);
+
+  const navigate = useNavigate();
 
   const handleMoreInfoClick = () => {
     navigate(`/movieInfo/${movieData.id}`, { state: { movie: movieData } });
+  };
+
+  const handleMouseEnter = (event) => {
+    if (event.clientX < window.innerWidth * 0.9) {
+      setIsHovered(true);
+    }
   };
 
   return (
     <div
       className="card-container"
       onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseLeave={() => setIsHovered(false)}   
     >
       <img
         src={`https://image.tmdb.org/t/p/w500${movieData.backdrop_path}`}
@@ -72,14 +81,14 @@ export default function Card({ movieData }) {
                 {/* )} */}
               </div>
               <div className="info">
-                <BiChevronDown
+                <AiOutlineInfoCircle
                   title="Plus d'infos"
                   onClick={handleMoreInfoClick}
                 />
               </div>
             </div>
-            {/* <div className="genres flex">
-              <ul className="flex">
+            {/* <div className="genres">
+              <ul>
                 {movieData.genres.map((genre) => (
                   <li key={genre}>{genre}</li>
                 ))}

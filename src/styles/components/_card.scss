@@ -13,7 +13,7 @@
     }
 
     .hover {
-        z-index: 90;
+        z-index: 9;
         height: max-content;
         width: 20rem;
         position: absolute;
@@ -76,16 +76,18 @@
             }
         }
 
-        // .genres {
-        //   ul {
-        //     gap: 1rem;
-        //     li {
-        //       padding-right: 0.7rem;
-        //       &:first-of-type {
-        //         list-style-type: none;
-        //       }
-        //     }
-        //   }
-        // }
+        .genres {
+            display: flex;
+          ul {
+            display: flex;
+            gap: 1rem;
+            li {
+              padding-right: 0.7rem;
+              &:first-of-type {
+                list-style-type: none;
+              }
+            }
+          }
+        }
     }
 }
