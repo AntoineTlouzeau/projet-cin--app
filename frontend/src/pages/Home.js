@@ -4,10 +4,7 @@ import backgroundImage from "../assets/img/home.jpg";
 import CardSlider from "../components/Slider";
 
 const Home = () => {
-  const token = localStorage.getItem("token");
-  if (!token) {
-    alert("pas de token");
-  }
+  
   return (
     <div className="home-container">
       <Navbar />

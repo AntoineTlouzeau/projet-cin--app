@@ -76,7 +76,6 @@ export default function CardSlider() {
           <AiOutlineRight onClick={() => handleDirection("right")} />
         </div>
       </div>
-
     </div>
   );
 }
