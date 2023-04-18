@@ -9,7 +9,7 @@ export default function Card({ movieData }) {
   const [isHovered, setIsHovered] = useState(false);
   // const genres = useSelector((state) => state.netflix.genres)
 
-  // console.log(genres);
+  // console.log({ movieData });
 
   const navigate = useNavigate();
 
@@ -24,6 +24,7 @@ export default function Card({ movieData }) {
   };
 
   return (
+    movieData.backdrop_path !== null && (
     <div
       className="card-container"
       onMouseEnter={() => setIsHovered(true)}
@@ -57,6 +58,7 @@ export default function Card({ movieData }) {
             >
               {movieData.title}
             </h3>
+            { movieData.vote_average }⭐
             <div className="icons">
               <div className="controls">
                 <IoPlayCircleSharp
@@ -97,6 +99,6 @@ export default function Card({ movieData }) {
           </div>
         </div>
       )}
-    </div>
+    </div>)
   );
 }

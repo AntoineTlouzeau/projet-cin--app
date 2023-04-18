@@ -10,19 +10,7 @@ export default function CardSlider({ title, genreId }) {
   const [sliderPostion, setSliderPosition] = useState(0);
   const listRef = useRef();
 
-  // const handleDirection = (direction) => {
-  //   let distance = listRef.current.getBoundingClientRect().x - 70;
-  //   if (direction === "left" && sliderPostion > 0) {
-  //     listRef.current.style.transform = `translateX(${230 + distance}px)`;
-  //     setSliderPosition(sliderPostion - 1);
-  //   }
-  //   if (direction === "right" && sliderPostion < 10) {
-  //     listRef.current.style.transform = `translateX(${-230 + distance}px)`;
-  //     setSliderPosition(sliderPostion + 1);
-  //   }
-  //   console.log(distance);
-  // };
-
+ 
   const handleDirection = (direction) => {
     const cardWidth = 230;
     const sliderWidth = listRef.current.offsetWidth;

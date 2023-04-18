@@ -13,7 +13,7 @@ const SearchResult = () => {
   const navSearch = location.state ? location.state.navSearch : null;
   const [search, setSearch] = useState(navSearch);
 
-  console.log(navSearch);
+  console.log(moviesData);
 
   useEffect(() => {
     axios
@@ -28,6 +28,7 @@ const SearchResult = () => {
   });
 
   return (
+    moviesData.backdrop_path !== null && (
     <div className="searchResult-container">
       <input type="checkbox" id="check" />
       <nav className="navbar">
@@ -73,7 +74,7 @@ const SearchResult = () => {
           <Card movieData={movie} key={movie.id} />
         ))}
       </div>
-    </div>
+    </div>)
   );
 };
 
