@@ -1,7 +1,6 @@
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import { firebaseAuth } from "../utils/firebase-config";
 import axios from "axios";
 import Card from "../components/Card";
 
@@ -22,10 +21,6 @@ const SearchResult = () => {
       )
       .then((res) => setMoviesData(res.data.results));
   }, [search]);
-
-  onAuthStateChanged(firebaseAuth, (currentUser) => {
-    if (!currentUser) navigate("/login");
-  });
 
   return (
     <div className="searchResult-container">
@@ -58,7 +53,7 @@ const SearchResult = () => {
           <li>
             <button
               className="fa fa-power-off"
-              onClick={() => signOut(firebaseAuth)}
+              onClick={() => signOut()}
             ></button>
           </li>
         </ul>

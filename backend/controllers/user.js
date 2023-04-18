@@ -1,7 +1,7 @@
 const User = require("../models/User.Js");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-
+const cookie = require("cookie");
 exports.signup = (req, res, next) => {
   bcrypt
     .hash(req.body.password, 10)
@@ -64,10 +64,15 @@ exports.login = (req, res, next) => {
 };
 
 exports.check = (req, res, next) => {
+  const cookies = req.headers.cookie;
+  const tokenCookie = cookies && cookie.parse(cookies).token; // extraire le cookie "token" si présent
+
   try {
-    const token = req.cookies.token;
+    const token = tokenCookie;
+    console.log(token);
     const decodedToken = jwt.verify(token, "RANDOM_TOKEN_SECRET");
     const userId = decodedToken.userId;
+    console.log("OK TOKEN ");
     User.findOne({ _id: userId })
       .then((user) => {
         if (!user) {
@@ -75,8 +80,8 @@ exports.check = (req, res, next) => {
         } else {
           req.userId = userId;
           req.user = user;
-          console.log("Token ok");
-          next();
+          res.status(200).json({userId})
+          
         }
       })
       .catch((error) => res.status(401).json({ error: error }));
