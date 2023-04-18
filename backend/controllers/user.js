@@ -63,6 +63,26 @@ exports.login = (req, res, next) => {
     .catch((err) => res.status(500).json({ err }));
 };
 
-exports.check = (req,res, next) => {
-  
-}
+exports.check = (req, res, next) => {
+  try {
+    const token = req.cookies.token;
+    const decodedToken = jwt.verify(token, "RANDOM_TOKEN_SECRET");
+    const userId = decodedToken.userId;
+    User.findOne({ _id: userId })
+      .then((user) => {
+        if (!user) {
+          throw "Utilisateur non trouvé !";
+        } else {
+          // Ajouter les informations de l'utilisateur à l'objet "req" pour une utilisation ultérieure
+          req.userId = userId;
+          req.user = user;
+          next();
+        }
+      })
+      .catch((error) => res.status(401).json({ error: error }));
+  } catch {
+    res.status(401).json({
+      error: new Error("Requête non authentifiée !"),
+    });
+  }
+};
