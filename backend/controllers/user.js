@@ -34,12 +34,27 @@ exports.login = (req, res, next) => {
                 .status(401)
                 .json({ message: "Paire identifiant/mot de passe incorrecte" });
             } else {
+              const token = jwt.sign(
+                { userId: user._id },
+                "RANDOM_TOKEN_SECRET",
+                {
+                  expiresIn: "24h",
+                }
+              );
+              res.cookie("token", token, {
+                maxAge: 24 * 60 * 60 * 1000,
+                httpOnly: true,
+              });
               res.status(200).json({
                 userId: user._id,
-                token: jwt.sign({ userId: user._id }, "RANDOM_TOKEN_SECRET", {
-                  expiresIn: "24h",
-                }),
+                token: token,
               });
+              // res.status(200).json({
+              //   userId: user._id,
+              //   token: jwt.sign({ userId: user._id }, "RANDOM_TOKEN_SECRET", {
+              //     expiresIn: "24h",
+              //   }),
+              // });
             }
           })
           .catch((err) => res.status(500).json({ err }));
@@ -47,3 +62,7 @@ exports.login = (req, res, next) => {
     })
     .catch((err) => res.status(500).json({ err }));
 };
+
+exports.check = (req,res, next) => {
+  
+}

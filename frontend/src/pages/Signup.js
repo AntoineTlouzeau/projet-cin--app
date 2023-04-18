@@ -35,10 +35,14 @@ export default function Signup() {
           <div className="text">
             <h1>Films, séries et bien plus en illimité.</h1>
             <h4>Où que vous soyez. Annulez à tout moment</h4>
-            <h6>
-              Prêt à regarder Netflix? Saisissez votre adresse e-mail pour vous
-              abonner ou réactiver votre abonnement.
-            </h6>
+            {errorMessage ? (
+              <h2>L'adresse mail est déjà utilisé</h2>
+            ) : (
+              <h6>
+                Prêt à regarder Netflix? Saisissez votre adresse e-mail pour
+                vous abonner ou réactiver votre abonnement.
+              </h6>
+            )}
           </div>
           <div className="form">
             <input
@@ -63,6 +67,7 @@ export default function Signup() {
               <button onClick={() => setShowPassword(true)}>Commencer</button>
             )}
           </div>
+
           {showPassword ? (
             <button onClick={handleSignup}>S'inscrire</button>
           ) : (

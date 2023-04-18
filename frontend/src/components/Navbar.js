@@ -1,7 +1,5 @@
-import { onAuthStateChanged, signOut } from "firebase/auth";
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { firebaseAuth } from "../utils/firebase-config";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -11,10 +9,11 @@ const Navbar = () => {
     navigate("/searchresult", { state: { navSearch: navSearch } });
   };
 
-  onAuthStateChanged(firebaseAuth, (currentUser) => {
-    if (!currentUser) navigate("/login");
-  });
-
+  const signOut = () => {
+    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    localStorage.removeItem("userId");
+    navigate("/signin");
+  };
   return (
     <div>
       <input type="checkbox" id="check" />
@@ -50,7 +49,7 @@ const Navbar = () => {
           <li>
             <button
               className="fa fa-power-off"
-              onClick={() => signOut(firebaseAuth)}
+              onClick={() => signOut()}
             ></button>
           </li>
         </ul>
@@ -59,7 +58,6 @@ const Navbar = () => {
           <span className="fa fa-times" id="times"></span>
         </label>
       </nav>
-
     </div>
   );
 };

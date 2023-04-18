@@ -11,13 +11,16 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [error, setErrorMessage] = useState("");
 
+  
+
   const handleLogin = (event) => {
     event.preventDefault();
     axios
       .post("http://localhost:5000/api/auth/login", { email, password })
       .then((response) => {
-        localStorage.setItem("userId", response.data.userId);
-        localStorage.setItem("token", response.data.token);
+        // localStorage.setItem("userId", response.data.userId);
+        // localStorage.setItem("token", response.data.token);
+        document.cookie = `token=${response.data.token}; expires=${new Date(Date.now() + 24 * 60 * 60 * 1000)}; path=/`;
         navigate("/");
       })
       .catch((error) => {
