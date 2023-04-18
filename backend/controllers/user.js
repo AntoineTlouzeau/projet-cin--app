@@ -73,9 +73,9 @@ exports.check = (req, res, next) => {
         if (!user) {
           throw "Utilisateur non trouvé !";
         } else {
-          // Ajouter les informations de l'utilisateur à l'objet "req" pour une utilisation ultérieure
           req.userId = userId;
           req.user = user;
+          console.log("Token ok");
           next();
         }
       })

@@ -8,28 +8,42 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import MovieInfo from "./pages/MovieInfo";
 import SearchResult from "./pages/SearchResult";
+import axios from "axios";
 
 const App = () => {
-  const [token, setToken] = useState(null);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("token");
-    setToken(storedToken); 
+    const fetchUser = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:5000/api/auth/check",
+          // {
+          //   withCredentials: true, // Permet d'envoyer les cookies avec la requête
+          // }
+        );
+        setUser(response.data);
+        console.log(setUser);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchUser();
   }, []);
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={token ? <Home /> : <Signup />} />
+          <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/movieinfo/:id" element={token ? <MovieInfo />: <Signup />} />
-          <Route path="/searchresult" element={token ? <SearchResult />: <Signup />} />
-          <Route path="/watchlist" element={token ? <Watchlist />: <Signup />} />
-          <Route path="/forum" element={token ? <Forum />: <Signup />} />
-          <Route path="/users" element={token ?<Users /> : <Signup />} />
+          <Route path="/movieinfo/:id" element={<MovieInfo />} />
+          <Route path="/searchresult" element={<SearchResult />} />
+          <Route path="/watchlist" element={<Watchlist />} />
+          <Route path="/forum" element={<Forum />} />
+          <Route path="/users" element={<Users />} />
 
           <Route path="/signup" element={<Signup />} />
-          <Route path="*" element={<Login />} />
+          <Route path="*" element={<Home />} />
         </Routes>
       </BrowserRouter>
     </>
