@@ -17,7 +17,8 @@ import SearchResult from "./pages/SearchResult";
 import axios from "axios";
 
 const App = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  console.log(isAuthenticated);
   useEffect(() => {
     const checkToken = async () => {
       try {
@@ -50,17 +51,36 @@ const App = () => {
         <Routes>
           <Route
             path="/"
-            element={isAuthenticated ? <Home /> : <Navigate to="/login" />}
+            element={
+              isAuthenticated ? (
+                <Home />
+              ) : (
+                <Login setIsAuthenticated={setIsAuthenticated} />
+              )
+            }
           />
           <Route
             path="/cineflix"
-            element={isAuthenticated ? <Home /> : <Navigate to="/login" />}
+            element={
+              isAuthenticated ? (
+                <Home />
+              ) : (
+                <Login setIsAuthenticated={setIsAuthenticated} />
+              )
+            }
           />
-          <Route path="/login" element={<Login />} />
+          {/* <Route
+            path="/login"
+            element={<Login setIsAuthenticated={setIsAuthenticated} />}
+          /> */}
           <Route
             path="/movieinfo/:id"
             element={
-              isAuthenticated ? <MovieInfo /> : <Navigate to="/login" replace />
+              isAuthenticated ? (
+                <MovieInfo />
+              ) : (
+                <Login setIsAuthenticated={setIsAuthenticated} />
+              )
             }
           />
           <Route
@@ -69,26 +89,38 @@ const App = () => {
               isAuthenticated ? (
                 <SearchResult />
               ) : (
-                <Navigate to="/login" replace />
+                <Login setIsAuthenticated={setIsAuthenticated} />
               )
             }
           />
           <Route
             path="/watchlist"
             element={
-              isAuthenticated ? <Watchlist /> : <Navigate to="/login" replace />
+              isAuthenticated ? (
+                <Watchlist />
+              ) : (
+                <Login setIsAuthenticated={setIsAuthenticated} />
+              )
             }
           />
           <Route
             path="/forum"
             element={
-              isAuthenticated ? <Forum /> : <Navigate to="/login" replace />
+              isAuthenticated ? (
+                <Forum />
+              ) : (
+                <Login setIsAuthenticated={setIsAuthenticated} />
+              )
             }
           />
           <Route
             path="/users"
             element={
-              isAuthenticated ? <Users /> : <Navigate to="/login" replace />
+              isAuthenticated ? (
+                <Users />
+              ) : (
+                <Login setIsAuthenticated={setIsAuthenticated} />
+              )
             }
           />
           <Route path="/signup" element={<Signup />} />
