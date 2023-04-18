@@ -1,4 +1,4 @@
-import { onAuthStateChanged, signOut } from "firebase/auth";
+import { signOut } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { firebaseAuth } from "../utils/firebase-config";
@@ -13,22 +13,24 @@ const SearchResult = () => {
   const navSearch = location.state ? location.state.navSearch : null;
   const [search, setSearch] = useState(navSearch);
 
-  console.log(moviesData);
+  // console.log(moviesData);
 
   useEffect(() => {
     axios
       .get(
         `https://api.themoviedb.org/3/search/multi?api_key=c33414545f69279dbdd28af3020ce178&language=fr-FR&page=1&include_adult=false&media_type=movieormedia_type=tv&query=${search}`
       )
-      .then((res) => setMoviesData(res.data.results));
+      .then((res) => {
+        const filteredMovies = res.data.results.filter(
+          (movie) => movie.backdrop_path && movie.backdrop_path !== null
+        );
+        setMoviesData(filteredMovies);
+      });
   }, [search]);
 
-  onAuthStateChanged(firebaseAuth, (currentUser) => {
-    if (!currentUser) navigate("/login");
-  });
+  console.log(moviesData);
 
   return (
-    moviesData.backdrop_path !== null && (
     <div className="searchResult-container">
       <input type="checkbox" id="check" />
       <nav className="navbar">
@@ -74,11 +76,10 @@ const SearchResult = () => {
           <Card movieData={movie} key={movie.id} />
         ))}
       </div>
-    </div>)
+    </div>
   );
 };
 
 export default SearchResult;
-
 
 //https://api.themoviedb.org/3/search/movie?api_key=c33414545f69279dbdd28af3020ce178&query=${search}&language=fr-FR ${search}

@@ -25,80 +25,78 @@ export default function Card({ movieData }) {
 
   return (
     movieData.backdrop_path !== null && (
-    <div
-      className="card-container"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}   
-    >
-      <img
-        src={`https://image.tmdb.org/t/p/w500${movieData.backdrop_path}`}
-        alt="movie"
-      />
+      <div
+        className="card-container"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        <img
+          src={`https://image.tmdb.org/t/p/w500${movieData.backdrop_path}`}
+          alt="movie"
+        />
 
-      {isHovered && (
-        <div className="hover">
-          <div className="image-video-container">
-            <img
-              src={`https://image.tmdb.org/t/p/w500${movieData.backdrop_path}`}
-              alt="movie"
-              onClick={handleMoreInfoClick}
-            />
-            {/* <video
+        {isHovered && (
+          <div className="hover">
+            <div className="image-video-container">
+              <img
+                src={`https://image.tmdb.org/t/p/w500${movieData.backdrop_path}`}
+                alt="movie"
+                onClick={handleMoreInfoClick}
+              />
+              {/* <video
               src={video}
               autoPlay
               loop
               muted
               onClick={() => navigate("/player")}
             /> */}
-          </div>
-          <div className="info-container">
-            <h3
-              className="name"
-              onClick={handleMoreInfoClick}
-            >
-              {movieData.title}
-            </h3>
-            { movieData.vote_average }⭐
-            <div className="icons">
-              <div className="controls">
-                <IoPlayCircleSharp
-                  title="Lecture"
-                  //   onClick={() => navigate("/player")}
-                />
-               
-                {/* {isLiked ? ( */}
-                <BsCheck
-                  title="Retirer de la liste"
-                  // onClick={() =>
-                  //   dispatch(
-                  //     removeFromLikedMovies({ movieId: movieData.id, email })
-                  //   )
-                  // }
-                />
-                {/* ) : ( */}
-                <AiOutlinePlus
-                  title="Ajouter à ma liste"
-                  // onClick={addToList}
-                />
-                {/* )} */}
-              </div>
-              <div className="info">
-                <AiOutlineInfoCircle
-                  title="Plus d'infos"
-                  onClick={handleMoreInfoClick}
-                />
-              </div>
             </div>
-            {/* <div className="genres">
+            <div className="info-container">
+              <h3 className="name" onClick={handleMoreInfoClick}>
+                {movieData.title ? movieData.title : movieData.name}
+              </h3>
+              {movieData.vote_average.toFixed(1)}⭐
+              <div className="icons">
+                <div className="controls">
+                  <IoPlayCircleSharp
+                    title="Lecture"
+                    //   onClick={() => navigate("/player")}
+                  />
+
+                  {/* {isLiked ? ( */}
+                  <BsCheck
+                    title="Retirer de la liste"
+                    // onClick={() =>
+                    //   dispatch(
+                    //     removeFromLikedMovies({ movieId: movieData.id, email })
+                    //   )
+                    // }
+                  />
+                  {/* ) : ( */}
+                  <AiOutlinePlus
+                    title="Ajouter à ma liste"
+                    // onClick={addToList}
+                  />
+                  {/* )} */}
+                </div>
+                <div className="info">
+                  <AiOutlineInfoCircle
+                    title="Plus d'infos"
+                    onClick={handleMoreInfoClick}
+                  />
+                </div>
+              </div>
+              {/* <div className="genres">
               <ul>
                 {movieData.genres.map((genre) => (
                   <li key={genre}>{genre}</li>
                 ))}
               </ul>
             </div> */}
+            </div>
           </div>
-        </div>
-      )}
-    </div>)
+        )}
+      </div>
+    )
   );
 }

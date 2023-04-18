@@ -25,7 +25,7 @@ export default function CardSlider({ title, genreId }) {
       listRef.current.style.transform = `translateX(${-cardWidth + distance}px)`;
       setSliderPosition(sliderPostion + 1);
     }
-    console.log(`translateX(${cardWidth + distance}px)`);
+    // console.log(`translateX(${cardWidth + distance}px)`);
   };
 
   useEffect(() => {

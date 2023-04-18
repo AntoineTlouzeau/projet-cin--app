@@ -19,7 +19,7 @@ export default function MovieInfo() {
       .then((res) => setReviewData(res.data.results));
   }, [id]);
 
-  console.log(reviewData);
+  // console.log(reviewData);
 
   return (
     <div className="movieInfo-container">
@@ -28,7 +28,7 @@ export default function MovieInfo() {
       <img src={`https://image.tmdb.org/t/p/w500${movieData.poster_path}`} alt="" />
       
       <h3>{ movieData.title }</h3>
-      { movieData.vote_average }⭐ / { movieData.vote_count } votes
+      { movieData.vote_average.toFixed(1) }⭐ / { movieData.vote_count } votes
       <div className="overview">
         {movieData.overview}
       </div>
